@@ -1,7 +1,12 @@
 name = "qianhou"
 compatibility_date = "2024-01-01"
-main = "workers-site/index.js"
 
-# 配置为Pages项目
+# 配置为Pages项目，指定静态资产目录
 [site]
-bucket = "./dist" 
+bucket = "./dist"
+
+# 指定Worker脚本路径，确保Workers Site正常工作
+[build]
+command = "npm run build"
+[build.upload]
+format = "service-worker" 

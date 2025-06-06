@@ -1,60 +1,32 @@
-import { getAssetFromKV } from '@cloudflare/kv-asset-handler'
-
-/**
- * The DEBUG flag will do two things:
- * 1. We will skip caching on the edge, which makes it easier to debug
- * 2. We will return an error message on exception in your Response
- */
-const DEBUG = false
+// 文件: workers-site/index.js
+// 标准的Cloudflare Pages Worker脚本
 
 addEventListener('fetch', (event) => {
-  try {
-    event.respondWith(handleEvent(event))
-  } catch (e) {
-    if (DEBUG) {
-      return event.respondWith(
-        new Response(e.message || e.toString(), {
-          status: 500,
-        }),
-      )
-    }
-    event.respondWith(new Response('Internal Error', { status: 500 }))
-  }
+  event.respondWith(handleRequest(event))
 })
 
-async function handleEvent(event) {
-  // const url = new URL(event.request.url)
-  let options = {}
+/**
+ * 处理请求
+ * @param {Event} event
+ */
+async function handleRequest(event) {
+  const url = new URL(event.request.url)
 
   try {
-    const page = await getAssetFromKV(event, options)
-    const response = new Response(page.body, page)
+    // 尝试从静态资产获取
+    const response = await fetch(event.request)
 
-    response.headers.set('X-XSS-Protection', '1; mode=block')
-    response.headers.set('X-Content-Type-Options', 'nosniff')
-    response.headers.set('X-Frame-Options', 'DENY')
-    response.headers.set('Referrer-Policy', 'unsafe-url')
-    response.headers.set('Feature-Policy', 'none')
-
-    return response
-  } catch (e) {
-    // 如果请求的路径不存在，返回index.html
-    if (e.status === 404) {
-      try {
-        // 重定向到index.html
-        const notFoundResponse = await getAssetFromKV(event, {
-          mapRequestToAsset: (req) => new Request(`${new URL(req.url).origin}/index.html`, req),
-        })
-
-        return new Response(notFoundResponse.body, {
-          ...notFoundResponse,
-          status: 200,
-        })
-      } catch {
-        // 忽略错误
-      }
+    // 如果资源存在，返回它
+    if (response.status < 400) {
+      return response
     }
 
-    return new Response(e.message || e.toString(), { status: 500 })
+    // 如果资源不存在，返回index.html (SPA处理)
+    return await fetch(`${url.origin}/index.html`, event.request)
+  } catch (e) {
+    // 返回错误信息
+    return new Response('Error serving content: ' + (e.message || e.toString()), {
+      status: 500,
+    })
   }
 }
