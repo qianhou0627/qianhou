@@ -8,6 +8,7 @@ import Components from 'unplugin-vue-components/vite' // 2️⃣ 自动导入组
 import { TDesignResolver } from 'unplugin-vue-components/resolvers' // 3️⃣ 解析器来自这里
 
 export default defineConfig({
+  base: '/qianhou/', // 设置基本路径为GitHub Pages仓库名
   plugins: [
     vue(),
     vueJsx(),
