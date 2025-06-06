@@ -1,7 +1,13 @@
 @import './base.css';
 
+html,
+body,
+#app,
+* {
+  font-family: '荆南波波黑', sans-serif !important;
+}
+
 body {
-  font-family: '荆南波波黑', sans-serif;
   font-weight: normal;
 }
 

@@ -945,7 +945,7 @@ onMounted(() => {
 // 获取产品图片路径，尝试多种格式
 const getProductImageSrc = (productName: string): string => {
   // 先尝试PNG格式
-  return `/picture/${productName}.png`
+  return `/public/picture/${productName}.png`
 }
 
 // 处理图片加载错误，尝试不同格式
@@ -956,13 +956,13 @@ const tryOtherFormats = (e: Event) => {
 
   // 如果当前是PNG格式，尝试JPG
   if (currentSrc.endsWith('.png')) {
-    target.src = `/picture/${productName}.jpg`
+    target.src = `/public/picture/${productName}.jpg`
     return
   }
 
   // 如果当前是JPG格式，尝试JPEG
   if (currentSrc.endsWith('.jpg')) {
-    target.src = `/picture/${productName}.jpeg`
+    target.src = `/public/picture/${productName}.jpeg`
     return
   }
 

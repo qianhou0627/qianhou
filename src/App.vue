@@ -255,7 +255,7 @@ onMounted(() => {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'JingNanBoBo', sans-serif;
+  font-family: '荆南波波黑', sans-serif !important;
 }
 
 .app {

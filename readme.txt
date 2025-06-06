@@ -53,3 +53,47 @@ package.json: 项目依赖和脚本配置
 index.html: 应用的 HTML 模板
 README.md: 项目说明文档
 .gitignore: Git 版本控制忽略文件配置
+
+
+
+qianhou/
+├── .editorconfig                 ✅ 上传 (编辑器配置)
+├── .prettierrc.json             ✅ 上传 (代码格式化配置)
+├── .vscode/                     ✅ 上传 (VS Code配置)
+│   ├── extensions.json
+│   └── settings.json
+├── e2e/                         ✅ 上传 (端到端测试)
+│   ├── tsconfig.json
+│   └── vue.spec.ts
+├── public/                      ✅ 上传 (静态资源)
+│   ├── favicon.ico
+│   ├── font/
+│   ├── Picture/                 ⚠️ 选择性上传 (图片资源很多，可能导致仓库过大)
+│   └── xiaoxin/                 ⚠️ 选择性上传 (图片资源很多，可能导致仓库过大)
+├── src/                         ✅ 上传 (源代码，最重要的部分)
+│   ├── App.vue
+│   ├── assets/
+│   ├── components/
+│   ├── env.d.ts
+│   ├── main.ts
+│   ├── router/
+│   ├── stores/
+│   └── views/
+├── workers-site/                ✅ 上传 (Cloudflare Workers配置)
+│   └── index.js
+├── auto-imports.d.ts            ✅ 上传 (自动导入类型声明)
+├── components.d.ts              ✅ 上传 (组件类型声明)
+├── env.d.ts                     ✅ 上传 (环境类型声明)
+├── eslint.config.ts             ✅ 上传 (ESLint配置)
+├── index.html                   ✅ 上传 (HTML入口)
+├── package.json                 ✅ 上传 (项目依赖)
+├── package-lock.json            ✅ 上传 (依赖锁定文件)
+├── playwright.config.ts         ✅ 上传 (Playwright测试配置)
+├── README.md                    ✅ 上传 (项目说明)
+├── tsconfig.app.json            ✅ 上传 (TypeScript配置)
+├── tsconfig.json                ✅ 上传 (TypeScript配置)
+├── tsconfig.node.json           ✅ 上传 (TypeScript配置)
+├── tsconfig.vitest.json         ✅ 上传 (Vitest配置)
+├── vite.config.ts               ✅ 上传 (Vite配置)
+├── vitest.config.ts             ✅ 上传 (Vitest配置)
+└── wrangler.toml                ✅ 上传 (Cloudflare Wrangler配置)
