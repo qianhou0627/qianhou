@@ -21,14 +21,8 @@
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
 }
 
-/* 自定义字体声明 */
-@font-face {
-  font-family: 'JingNanBoBo';
-  src: url('/font/荆南波波黑-Bold  1级.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
+/* 使用在线字体，不再使用本地字体文件 */
+/* 已在index.html中引入在线字体 */
 
 /* semantic color variables for this project */
 :root {
@@ -76,7 +70,7 @@ body {
     background-color 0.5s;
   line-height: 1.6;
   font-family:
-    'JingNanBoBo',
+    '荆南波波黑',
     Inter,
     -apple-system,
     BlinkMacSystemFont,
